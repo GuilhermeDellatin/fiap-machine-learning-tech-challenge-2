@@ -1,5 +1,0 @@
-# Scraper dependencies (para Python 3.10+)
-selenium
-pandas
-boto3
-python-dotenv

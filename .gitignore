@@ -1,0 +1,46 @@
+# Virtual environments
+**/venv/
+**/ENV/
+**/env/
+
+# Python cache
+**/__pycache__/
+**/*.py[cod]
+**/*.pyo
+**/*.pyd
+
+# Log files and local database
+**/*.log
+**/*.sqlite3
+
+# IDE and editor configurations
+**/.vscode/
+**/.idea/
+**/*.swp
+
+# System files
+**/.DS_Store
+**/Thumbs.db
+
+# Pip
+**/pip-log.txt
+**/pip-delete-this-directory.txt
+
+# Tests
+**/htmlcov/
+**/.tox/
+**/.coverage
+**/.cache
+**/nosetests.xml
+**/coverage.xml
+**/*.cover
+
+# PyInstaller
+**/*.spec
+**/dist/
+**/build/
+.vercel
+
+*.zip
+layer/
+.env

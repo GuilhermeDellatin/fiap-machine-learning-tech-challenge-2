@@ -6,3 +6,9 @@ urllib3==2.5.0
 unidecode
 pandas
 pyarrow
+
+# Scraper dependencies (para Python 3.10+)
+selenium
+pandas
+boto3
+python-dotenv
