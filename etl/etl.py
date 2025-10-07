@@ -10,7 +10,7 @@ from pyspark.sql.window import Window
 from pyspark.sql.types import StringType, TimestampType
 
 # --- 1. INICIALIZAÇÃO DO JOB ---
-# Adicione o novo argumento 's3_input_path' à lista de argumentos esperados
+
 args = getResolvedOptions(sys.argv, ['JOB_NAME', 's3_input_path'])
 sc = SparkContext()
 glueContext = GlueContext(sc)
@@ -19,20 +19,20 @@ job = Job(glueContext)
 job.init(args['JOB_NAME'], args)
 
 # --- 2. EXTRAÇÃO DOS DADOS BRUTOS ---
-# Use o caminho do arquivo recebido da Lambda em vez de um caminho fixo
+
 s3_input_path = args['s3_input_path']
 
 source_dyf = glueContext.create_dynamic_frame.from_options(
     connection_type="s3",
     format="parquet",
     connection_options={
-        "paths": [s3_input_path]  # <-- MODIFICADO: Lê apenas o arquivo específico
-        # "recurse": True  <-- REMOVIDO: Não é mais necessário
+        "paths": [s3_input_path]
     },
     transformation_ctx="source_dyf"
 )
 
-# --- 3. TRANSFORMAÇÃO DOS DADOS (seu código original permanece aqui) ---
+# --- 3. TRANSFORMAÇÃO DOS DADOS ---
+
 df = source_dyf.toDF()
 
 # Seleção de colunas e limpeza inicial
@@ -87,10 +87,7 @@ df = df.drop("data_pregao_ts")
 
 transformed_dyf = DynamicFrame.fromDF(df, glueContext, "transformed_dyf")
 
-# --- 4. CARGA DOS DADOS REFINADOS (sem alterações) ---
-# O modo de escrita padrão para partições funciona como um "upsert".
-# Como seu DataFrame agora só contém dados do dia, ele apenas adicionará/sobrescreverá
-# a partição do dia atual, sem tocar nas antigas.
+# --- 4. CARGA DOS DADOS REFINADOS ---
 datasink = glueContext.getSink(
     path="s3://postech-ml-fase2-us-east-2/refined/",
     connection_type="s3",
