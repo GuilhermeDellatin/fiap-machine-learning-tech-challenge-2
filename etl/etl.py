@@ -5,7 +5,7 @@ from pyspark.context import SparkContext
 from awsglue.context import GlueContext
 from awsglue.job import Job
 from awsglue.dynamicframe import DynamicFrame
-from pyspark.sql.functions import col, lit, avg, sum, date_format
+from pyspark.sql.functions import col, avg, sum, date_format
 from pyspark.sql.window import Window
 from pyspark.sql.types import StringType, TimestampType
 
