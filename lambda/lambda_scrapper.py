@@ -1,4 +1,3 @@
-# scrapper/lambda_function.py
 import json
 import datetime
 import logging
