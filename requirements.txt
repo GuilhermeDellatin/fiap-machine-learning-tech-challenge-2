@@ -7,5 +7,4 @@ urllib3==2.5.0
 unidecode
 pandas
 pyarrow
-pandas
 boto3
