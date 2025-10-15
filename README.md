@@ -21,7 +21,7 @@ Projeto para construção de uma pipeline de dados completo para extrair, proces
 ## Descrição
 
 O objetivo deste projeto é construir uma pipeline de dados batch para extrair, processar e analisar cotações diárias de ações ou índices da B3.
-A ingestão é feita via scraping (ou fetch de uma fonte CSV/Parquet já consolidada), 
+A ingestão é feita via scraping, 
 os dados brutos são armazenados no Amazon S3 em Parquet com partição diária, 
 um S3 Event Notification aciona uma AWS Lambda que inicia um job do AWS Glue. 
 O Glue executa as transformações obrigatórias e escreve os dados refinados (particionados por data e código da ação) de volta no S3. 
